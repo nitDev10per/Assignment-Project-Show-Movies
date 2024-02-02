@@ -30,7 +30,7 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity implements click1{
 
-   // ArrayList<list> arr=new ArrayList<>();
+    ArrayList<list> arra=new ArrayList<>();
     //public static final MediaType JSON = MediaType.get("application/json");
    // OkHttpClient client = new OkHttpClient();
 
@@ -81,12 +81,16 @@ public class MainActivity extends AppCompatActivity implements click1{
             search.setSingleLine(true);
             search.setOnEditorActionListener((v, actionId, event) -> {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    input=null;
                     input = search.getText().toString().trim(); // Trim to remove leading/trailing spaces
-                    Toast.makeText(MainActivity.this, input, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"fatching...", Toast.LENGTH_SHORT).show();
                     if(input!=null) {
+
+                       // RecycleAdapter r = new RecycleAdapter((Context) MainActivity.this, arra, k);
+                       // recyl.setAdapter(r);
                         initiateNetworkReques();
                     }
-                    input=null;
+                    search.setText(null);
                     return true;
                 }
                 return false;
@@ -132,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements click1{
                         .url("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1")
                         .get()
                         .header("accept", "application/json")
-                        .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NjNjMjYwMjc5OTA4YmUxMTNhZTQyZjFiNDNkNGI0ZSIsInN1YiI6IjY1YmEwZWM1MzNhMzc2MDE3Yjg4NjI5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.K9hDIc4oXmMKB2erNeiW7WjRwxlWiDjCK3lUyHSqLdM")
+                        .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2N2Y5MjVmODdjNWMyOTU5NDdlYTRhM2IwNmJmNWY5ZCIsInN1YiI6IjY1YmEwZWM1MzNhMzc2MDE3Yjg4NjI5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8_ilFtMhe8he5fot7fVvyPj7J_H3eFop8KZd6TSeYac")
                         .build();
 
                 try (Response response = client.newCall(request).execute()) {
@@ -268,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements click1{
                         .url("https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1&query=" + input)
                         .get()
                         .header("accept", "application/json")
-                        .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NjNjMjYwMjc5OTA4YmUxMTNhZTQyZjFiNDNkNGI0ZSIsInN1YiI6IjY1YmEwZWM1MzNhMzc2MDE3Yjg4NjI5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.K9hDIc4oXmMKB2erNeiW7WjRwxlWiDjCK3lUyHSqLdM")
+                        .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2N2Y5MjVmODdjNWMyOTU5NDdlYTRhM2IwNmJmNWY5ZCIsInN1YiI6IjY1YmEwZWM1MzNhMzc2MDE3Yjg4NjI5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8_ilFtMhe8he5fot7fVvyPj7J_H3eFop8KZd6TSeYac")
                         .build();
 
                 try (Response response = client.newCall(request).execute()) {
